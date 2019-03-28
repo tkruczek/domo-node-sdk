@@ -10,14 +10,14 @@
     "lint": "tslint src/**/*.ts --project ./tsconfig.json --type-check",
     "test": "mocha --opts mocha.opts",
     "tdd": "mocha --opts mocha.opts --watch",
-    "build": "rm -rf ./dist && tsc",
+    "build": "rimraf -rf ./dist && tsc",
     "coverage": "NODE_ENV=test istanbul cover _mocha -- --opts .mocharc",
     "upload": "npm run test && npm version && npm run build && npm publish",
-    "clean": "rm -rf node_modules && npm install"
+    "clean": "rimraf -rf node_modules && npm install"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/domoinc/domo-node-sdk"
+    "url": "git+https://github.com/tkruczek/domo-node-sdk"
   },
   "keywords": [
     "Domo"
@@ -41,6 +41,7 @@
     "istanbul": "^0.4.5",
     "mocha": "^3.3.0",
     "nock": "^9.0.13",
+    "rimraf": "^2.6.3",
     "sinon": "^2.3.6",
     "ts-node": "^3.2.0",
     "tslint": "^5.5.0",
