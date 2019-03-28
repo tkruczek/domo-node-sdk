@@ -1,5 +1,5 @@
 import Transport, { Request } from '../common/Transport';
-import { HTTP_METHODS } from '../common/Constants';
+import { HTTP_METHODS, UPDATE_METHODS } from '../common/Constants';
 import { DataSet, Policy } from './models';
 
 export default class DatasetClient {
@@ -48,9 +48,12 @@ export default class DatasetClient {
     return this.transport.delete(req, this.type);
   }
 
-  importData(id: string, csv: string): Promise<void> {
+  importData(id: string, csv: string, updateMethod: UPDATE_METHODS = UPDATE_METHODS.REPLACE): Promise<void> {
     const req: Request = {
       url: `${this.urlBase}/${id}/data`,
+      params: {
+        updateMethod
+      },
       headers: { 'Content-Type': 'text/csv' },
       body: csv,
     };
